@@ -1,0 +1,51 @@
+function isSubset(a, b, m, n) {
+ 
+    // map to store the values of array a[]
+    let mp = new Map();
+ 
+    for (let i = 0; i < m; i++) {
+         if (mp.has(a[i])) {
+            mp.set(a[i], mp.get(a[i]) + 1)
+        } else {
+            mp.set(a[i], 1)
+        }
+    }
+ 
+    // flag value
+    let f = 0;
+ 
+    for (let i = 0; i < n; i++) {
+        // if b[i] is not present in map
+        // then array b[] can not be a
+        // subset of array a[]
+ 
+        if (!mp.has(b[i])) {
+            f = 1;
+            break;
+        }
+ 
+        // if if b[i] is present in map
+        // decrement by one
+        else {
+            mp.set(b[i], mp.get(b[i]) - 1);
+ 
+            if (mp.get(b[i]) == 0)
+                mp.delete(b[i]);
+        }
+    }
+ 
+    return f;
+}
+ 
+// Driver code
+ 
+let arr1 = [11, 1, 13, 21, 3, 7];
+let arr2 = [11, 3, 7, 1];
+ 
+let m = arr1.length;
+let n = arr2.length;
+ 
+if (!isSubset(arr1, arr2, m, n))
+    document.write("arr2[] is subset of arr1[] ");
+else
+    document.write("arr2[] is not a subset of arr1[]");

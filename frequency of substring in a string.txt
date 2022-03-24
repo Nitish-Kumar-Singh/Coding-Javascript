@@ -1,0 +1,18 @@
+function occurrence(string, substring) {
+    var counter = 0;
+    var sub = substring.toLowerCase();
+    var str = string.toLowerCase(); 
+    var array = [];
+    var index = -1;
+
+    do {
+        index = str.indexOf(sub, index + 1);
+        if (index != -1) {
+            array[counter++] = index;
+            i = index;
+        }
+    } while (index != -1);
+
+    return counter; // or return array; if you want the indexes
+}
+console.log(occurrence('dhimanman',"man"))
